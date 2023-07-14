@@ -21,4 +21,8 @@ export class IngredientService {
   async create(ingredient: Ingredient): Promise<Ingredient> {
     return await this.ingredientRepository.save(ingredient);
   }
+
+  async remove(id: string): Promise<void> {
+    await this.ingredientRepository.delete(id);
+  }
 }
