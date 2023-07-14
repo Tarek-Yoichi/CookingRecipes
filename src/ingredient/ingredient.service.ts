@@ -22,6 +22,13 @@ export class IngredientService {
     return await this.ingredientRepository.save(ingredient);
   }
 
+  async update(id: string, ingredient: Ingredient): Promise<Ingredient> {
+    // eslint-disable-next-line prettier/prettier
+    const toUpdate = await this.ingredientRepository.findOne({ where: { id: Number(id) } });
+    const updated = Object.assign(toUpdate, ingredient);
+    return await this.ingredientRepository.save(updated);
+  }
+
   async remove(id: string): Promise<void> {
     await this.ingredientRepository.delete(id);
   }

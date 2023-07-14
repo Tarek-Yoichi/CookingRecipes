@@ -1,4 +1,5 @@
-import { Controller, Get, Post, Body, Param, Delete } from '@nestjs/common';
+// eslint-disable-next-line prettier/prettier
+import { Controller, Get, Post, Body, Param, Delete, Patch } from '@nestjs/common';
 import { IngredientService } from './ingredient.service';
 import { Ingredient } from '../entities/ingredient.entity';
 
@@ -20,6 +21,12 @@ export class IngredientController {
   create(@Body() ingredient: Ingredient): Promise<Ingredient> {
     console.log('INGREDIENT', ingredient);
     return this.ingredientService.create(ingredient);
+  }
+
+  @Patch(':id')
+  // eslint-disable-next-line prettier/prettier
+  update(@Param('id') id: string, @Body() ingredient: Ingredient): Promise<Ingredient> {
+    return this.ingredientService.update(id, ingredient);
   }
 
   @Delete(':id')
