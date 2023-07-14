@@ -14,6 +14,10 @@ export class IngredientService {
     return this.ingredientRepository.find();
   }
 
+  findOne(id: string): Promise<Ingredient> {
+    return this.ingredientRepository.findOne({ where: { id: Number(id) } });
+  }
+
   async create(ingredient: Ingredient): Promise<Ingredient> {
     return await this.ingredientRepository.save(ingredient);
   }

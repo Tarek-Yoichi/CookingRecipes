@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { IngredientService } from './ingredient.service';
 import { Ingredient } from '../entities/ingredient.entity';
 
@@ -9,6 +9,11 @@ export class IngredientController {
   @Get()
   findAll(): Promise<Ingredient[]> {
     return this.ingredientService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string): Promise<Ingredient> {
+    return this.ingredientService.findOne(id);
   }
 
   @Post()
